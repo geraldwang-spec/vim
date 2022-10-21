@@ -3,7 +3,7 @@ set pumheight=10
 set clipboard="unamedplus"
 set mouse="a"
 set showmode
-set hlsearch
+"set hlsearch
 set shiftwidth=4
 set tabstop=4
 set showtabline=2
@@ -12,14 +12,12 @@ set splitright
 "set termguicolors
 set completeopt=menuone,noselect
 set background=dark
-"set t_Co=256
-"syntax enable
-
+set laststatus=2
+set autoread
 set wildmenu
-"set wildmode=longest:list,full
+set noswapfile
 
-
-"syntax on
+syntax on
 highlight Pmenu ctermbg=Black ctermfg=White guibg=Black guifg=White
 
 nmap qa :wq<CR>
@@ -95,3 +93,6 @@ nmap m. gt
 nmap m, gT
 nmap <F4> :tabc<CR>
 nmap <F3> :exec("/".expand("<cword>"))<CR>
+
+" setting command
+command Vimconfig tabe $HOME/.vimrc
