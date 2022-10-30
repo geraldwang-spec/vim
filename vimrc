@@ -72,10 +72,21 @@ set cspc=5
 "imap <Tab> <C-n>
 
 " tree view
-nmap <F2> :Lex 30<CR>
-nmap <Space>q :close<CR>
+"nmap <F2> :Lex 30<CR>
+"nmap <Space>q :close<CR>
 let g:netrw_liststyle=3
 let g:netrw_browse_split=3
+
+" Toggle Vexplore with Ctrl-E
+function! ToggleNetrw()
+	if &ft ==# "netrw"
+		:close
+	else
+		:Lex 30<CR>
+	endif
+endfunction
+
+map <F2> :call ToggleNetrw()<CR>
 
 
 "switch to binary
@@ -87,8 +98,6 @@ nmap m. gt
 nmap m, gT
 nmap <F4> :tabc<CR>
 nmap <F3> :exec("/".expand("<cword>"))<CR>
-
-
 
 
 " vim plugin
@@ -117,7 +126,7 @@ nmap <Space>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <Space>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <Space>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <Space>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <Space>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <Space>i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
 nmap <Space>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap <Space>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 
@@ -228,3 +237,9 @@ function CtagCS()
 endfunction
 command Cproject call CtagCS()
 
+function Cgdb()
+	packadd termdebug
+	let g:termdebug_wide = 163
+	
+endfunction
+command Cdebug call Cgdb()
